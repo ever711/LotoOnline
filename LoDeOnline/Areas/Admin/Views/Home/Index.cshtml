@@ -1,0 +1,160 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en" data-ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Angular version | Angulr</title>
+    <meta name="description" content="Angularjs, Html5, Music, Landing, 4 in 1 ui kits package" />
+    <meta name="keywords" content="AngularJS, angular, bootstrap, admin, dashboard, panel, app, charts, components,flat, responsive, layout, kit, ui, route, web, app, widgets" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/bower_components/bootstrap/dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/bower_components/animate.css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/bower_components/font-awesome/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/bower_components/simple-line-icons/css/simple-line-icons.css" type="text/css" />
+
+    <link href="~/Areas/Admin/Content/libs/angular-toastr/angular-toastr.min.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/libs/angular-block-ui/angular-block-ui.min.css" rel="stylesheet" />
+
+    <link href="~/Areas/Admin/Content/kendoui/styles/kendo.2017.2.621.common-bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/kendoui/styles/kendo.2017.2.621.bootstrap.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/css/font.css" type="text/css" />
+    <link rel="stylesheet" href="~/Areas/Admin/Content/angulr/css/app.css" type="text/css" />
+
+    <link href="~/Areas/Admin/Content/main.css" rel="stylesheet" />
+</head>
+<body ng-controller="AppCtrl">
+    <div class="app" id="app" ng-class="{'app-header-fixed':app.settings.headerFixed, 'app-aside-fixed':app.settings.asideFixed, 'app-aside-folded':app.settings.asideFolded, 'app-aside-dock':app.settings.asideDock, 'container':app.settings.container}" ui-view>
+    </div>
+
+
+    <!-- jQuery -->
+    <script src="~/Areas/Admin/Content/angulr/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Angular -->
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular/angular.js"></script>
+    <script src="~/Areas/Admin/Content/libs/angular-i18n/angular-locale_vi-vn.js"></script>
+
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-resource/angular-resource.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-touch/angular-touch.js"></script>
+
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-ui-utils/ui-utils.js"></script>
+
+    <!-- bootstrap -->
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <!-- lazyload -->
+    <script src="~/Areas/Admin/Content/angulr/bower_components/oclazyload/dist/ocLazyLoad.js"></script>
+    <!-- translate -->
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-translate/angular-translate.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/bower_components/angular-translate-storage-local/angular-translate-storage-local.js"></script>
+
+    <!-- App -->
+    <script src="~/Areas/Admin/Content/angulr/js/app.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/config.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/config.lazyload.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/config.router.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/main.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/services/ui-load.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/filters/fromNow.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/setnganimate.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-butterbar.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-focus.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-fullscreen.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-jq.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-module.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-nav.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-scroll.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-shift.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/directives/ui-toggleclass.js"></script>
+    <script src="~/Areas/Admin/Content/angulr/js/controllers/bootstrap.js"></script>
+    <!-- Lazy loading -->
+
+    <script src="~/Areas/Admin/Content/libs/angular-toastr/angular-toastr.tpls.min.js"></script>
+
+    <script src="~/Areas/Admin/Content/libs/angular-block-ui/angular-block-ui.min.js"></script>
+
+    <script src="~/Areas/Admin/Content/libs/angular-filter/angular-filter.min.js"></script>
+
+    <script src="~/Areas/Admin/Content/kendoui/js/kendo.2017.3.1026.all.min.js"></script>
+    <script src="~/Areas/Admin/Content/kendoui/js/cultures/kendo.culture.vi-VN.min.js"></script>
+    <script src="~/Areas/Admin/Content/kendoui/messages/kendo.messages.vi-VN.js"></script>
+    <script type="text/javascript">
+         $(document).ready(function () {
+             //set current to the "en-GB" culture script
+             kendo.culture("vi-VN");
+         });
+    </script>
+
+    <script src="~/Areas/Admin/App/daiXoSo/dai.xo.so.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/daiXoSo/dai.xo.so.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/daiXoSo/dai.xo.so.rule.modal.controller.js"></script>
+    <script src="~/Areas/Admin/App/daiXoSo/dai.xo.so.service.js"></script>
+
+    <script src="~/Areas/Admin/App/ketQuaXoSo/ket.qua.xo.so.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/ketQuaXoSo/ket.qua.xo.so.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/ketQuaXoSo/ket.qua.xo.so.service.js"></script>
+    <script src="~/Areas/Admin/App/ketQuaXoSo/ket.qua.xo.so.lay.ket.qua.controller.js"></script>
+
+    <script src="~/Areas/Admin/App/loaiDe/loai.de.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/loaiDe/loai.de.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/loaiDe/loai.de.rule.modal.controller.js"></script>
+    <script src="~/Areas/Admin/App/loaiDe/loai.de.service.js"></script>
+    <script src="~/Areas/Admin/App/loaiDeRule/loai.de.rule.service.js"></script>
+
+    <script src="~/Areas/Admin/App/loDeCategory/lo.de.category.controller.js"></script>
+    <script src="~/Areas/Admin/App/loDeCategory/lo.de.category.service.js"></script>
+
+    <script src="~/Areas/Admin/App/loaiDeCategory/loai.de.category.controller.js"></script>
+    <script src="~/Areas/Admin/App/loaiDeCategory/loai.de.category.service.js"></script>
+
+    <script src="~/Areas/Admin/App/accountJournal/account.journal.bank.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/accountJournal/account.journal.bank.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/accountJournal/account.journal.service.js"></script>
+
+    <script src="~/Areas/Admin/App/resBank/res.bank.form.modal.controller.js"></script>
+    <script src="~/Areas/Admin/App/resBank/res.bank.service.js"></script>
+
+    <script src="~/Areas/Admin/App/accountPayment/account.payment.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/accountPayment/account.payment.service.js"></script>
+
+    <script src="~/Areas/Admin/App/danhDe/danh.de.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.service.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.line.modal.controller.js"></script>
+
+    <script src="~/Areas/Admin/App/danhDeLine/danh.de.line.service.js"></script>
+
+    <script src="~/Areas/Admin/App/resGroup/res.group.service.js"></script>
+    <script src="~/Areas/Admin/App/resGroup/res.group.model.access.modal.controller.js"></script>
+    <script src="~/Areas/Admin/App/resGroup/res.group.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/resGroup/res.group.form.controller.js"></script>
+
+    <script src="~/Areas/Admin/App/irRule/ir.rule.service.js"></script>
+    <script src="~/Areas/Admin/App/irRule/ir.rule.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/irRule/ir.rule.form.controller.js"></script>
+
+    <script src="~/Areas/Admin/App/irModel/ir.model.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/irModel/ir.model.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/irModel/ir.model.service.js"></script>
+
+    <script src="~/Areas/Admin/App/irModelAccess/ir.model.access.form.controller.js"></script>
+    <script src="~/Areas/Admin/App/irModelAccess/ir.model.access.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/irModelAccess/ir.model.access.service.js"></script>
+
+    <script src="~/Areas/Admin/App/danhDe/danh.de.service.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.list.controller.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.line.modal.controller.js"></script>
+    <script src="~/Areas/Admin/App/danhDe/danh.de.form.controller.js"></script>
+</body>
+</html>

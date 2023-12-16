@@ -1,0 +1,102 @@
+﻿@model LoDeOnline.Models.IndexViewModel
+<div class="card o_form_view">
+    <div class="card-header">Nạp tiền thủ công</div>
+    <div class="card-body">
+        <script type="text/javascript">
+            function successNapTien(data) {
+                alert(data.message);
+                if (data.success) {
+                    $("#naptien-form")[0].reset();
+                    $("#from_overview_naptien_account option").each(function () {
+                        if ($(this).val().length) {
+                            $(this).remove();
+                        }
+                    });
+                }
+            }
+        </script>
+        @using (Ajax.BeginForm("NapTien", "Manage", null,
+                   new AjaxOptions { HttpMethod = "POST", OnSuccess = "successNapTien" }, new { id = "naptien-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <table class="o_group o_inner_group">
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Ngân hàng
+                        </label>
+                    </td>
+                    <td>
+                        <select name="BankId" id="from_overview_naptien_bank" class="form-control">
+                            <option></option>
+                            @foreach (var bank in Model.Banks)
+                            {
+                                <option value="@bank.Value">@bank.Text</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Tài khoản nhận
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <select id="from_overview_naptien_account" name="JournalId" class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Tên người gửi
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" class="form-control" name="Sender" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Số tiền
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" name="Amount" id="naptien-Amount" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Mã giao dịch
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" name="TransactionCode" class="form-control" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            &nbsp;
+                        </label>
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-danger" value="Nạp tiền" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>

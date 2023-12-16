@@ -1,0 +1,242 @@
+﻿<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.loaide.list">Loại đề</a></li>
+        <li class="active" ng-show="vm.id">{{vm.model.Name}}</li>
+        <li class="active" ng-hide="vm.id">Thêm</li>
+    </ol>
+    <div class="o_cp_left">
+        <div class="o_cp_buttons">
+            <div class="o_form_buttons">
+                <button accesskey="s" class="btn btn-primary btn-sm o_form_button_save" type="button" ng-click="vm.on_button_save()">
+                    Lưu
+                </button>
+                <button accesskey="c" class="btn btn-primary btn-sm o_form_button_save" type="button" ng-click="vm.on_button_save_and_new()">
+                    Lưu và thêm mới
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+<div class="o_form_view o_form_editable" kendo-validator="vm.validator">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <div class="oe_title">
+                <label class="o_form_label">
+                    Tên loại đề
+                </label>
+                <h1>
+                    <input class="form-control o_form_required" type="text" ng-model="vm.model.Name" required validationMessage="Nhập tên loại đề">
+                </h1>
+            </div>
+
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Kiểu
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <select class="form-control" ng-model="vm.model.Type">
+                                    <option value="normal">Thông thường</option>
+                                    <option value="xien">Xiên</option>
+                                    <option value="xientruot">Xiên trượt</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr ng-show="['xien', 'xientruot'].indexOf(vm.model.Type) !== -1">
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Số lượng xiên
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input kendo-numeric-text-box focus-select-all-text k-min="0" k-decimals="0" k-format="'n0'" k-ng-model="vm.model.SoLuongXien" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Tìm N lần
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <div class="o_checkbox o_form_field_boolean o_form_field">
+                                    <input type="checkbox" ng-model="vm.model.Multi">
+                                    <span></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Nhóm lô đề
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <select kendo-combo-box
+                                        k-ng-model="vm.model.LoDeCateg"
+                                        k-data-text-field="'Name'"
+                                        k-data-value-field="'Id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="vm.loDeCategoryDataSource"
+                                        style="width: 100%"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Nhóm loại đề
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <select kendo-combo-box
+                                        k-ng-model="vm.model.LoaiDeCateg"
+                                        k-data-text-field="'Name'"
+                                        k-data-value-field="'Id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-data-source="vm.loaiDeCategoryDataSource"
+                                        style="width: 100%"></select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Mô tả
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <textarea class="form-control" ng-model="vm.model.Description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Hiệu lực
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <div class="o_checkbox o_form_field_boolean o_form_field">
+                                    <input type="checkbox" ng-model="vm.model.Active">
+                                    <span></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Thanh toán 1K/con
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input kendo-numeric-text-box focus-select-all-text k-min="0" k-ng-model="vm.model.ThanhToan1K" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Thắng gấp (lần)
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input kendo-numeric-text-box focus-select-all-text k-min="0" k-ng-model="vm.model.ThangGap" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Số đánh nhỏ nhất
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input kendo-numeric-text-box focus-select-all-text k-min="0" k-decimals="0" k-format="'n0'" k-ng-model="vm.model.MinValue" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Số đánh lớn nhất
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input kendo-numeric-text-box focus-select-all-text k-min="0" k-decimals="0" k-format="'n0'" k-ng-model="vm.model.MaxValue" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <div class="o_horizontal_separator">
+                    Quy định
+                </div>
+                <div class="o_form_field o_form_field_one2many o_view_manager_content">
+                    <div>
+                        <div class="table-responsive">
+                            <table class="o_list_view table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Mô tả</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="rule in vm.rules">
+                                        <td>{{rule.Name}}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="vm.edit_rule($index)" tabindex="-1"><span class="fa fa-edit"></span></button>
+                                            <button type="button" class="btn btn-default btn-sm" ng-click="vm.remove_rule($index)" tabindex="-1"><span class="fa fa-trash-o"></span></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" class="o_form_field_x2many_list_row_add"><a ng-click="vm.add_rule()">Thêm quy định</a></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,16 @@
+﻿@model LoDeOnline.Models.TinTuc
+
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.TieuDe);
+}
+
+
+
+<div>
+    <h4>@Html.DisplayFor(model => model.TieuDe)</h4>
+    <hr />
+    @Html.Raw(Model.NoiDung)
+</div>
+<p>
+    @Html.ActionLink("Xem thêm tin khác", "Index")
+</p>

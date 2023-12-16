@@ -1,0 +1,29 @@
+﻿@model LoDeOnline.Models.TinTuc
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2 style="padding-top:30px;">Chi tiết</h2>
+
+<h3>Bạn có muốn xoá tin này không?</h3>
+<div>
+    <h4>Tin tức</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

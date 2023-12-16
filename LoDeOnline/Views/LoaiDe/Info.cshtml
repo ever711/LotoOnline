@@ -1,0 +1,53 @@
+﻿@model LoDeOnline.Models.LoaiDeSimple
+@{
+    var total = (Model.MaxValue ?? 0) - (Model.MinValue ?? 0) + 1;
+    var page_size = 100;
+    if (total <= 10)
+    {
+        page_size = 10;
+    }
+
+    var total_pages = total / page_size;
+    if (total % page_size > 0)
+    {
+        total_pages++;
+    }
+   
+    var padding = Math.Max(Model.MinValue ?? 0, Model.MaxValue ?? 0).ToString().Length;
+    var id = Guid.NewGuid();
+}
+
+<div id="loto_type_info">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" style="margin-left: 0;" role="tablist">
+        @for (var i = 0; i < total_pages; i++)
+        {
+            var start = (i * page_size).ToString("D" + padding);
+            var end = ((i + 1) * page_size - 1).ToString("D" + padding);
+            <li class="nav-item">
+                <a class="nav-link @(i == 0 ? "active" : "")" data-toggle="tab" role="tab" href="#@start-@end-@id">@start-@end</a>
+            </li>
+        }
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        @for (var i = 0; i < total_pages; i++)
+        {
+            var start = (i * page_size);
+            var end = ((i + 1) * page_size - 1);
+            <div role="tabpanel" class="tab-pane fade @(i == 0 ? "active show": "")" id="@start.ToString("D" + padding)-@end.ToString("D" + padding)-@id">
+                @Html.Partial("_ChonSo", new { start = start, length = page_size, padding = padding })
+            </div>
+        }
+    </div>
+</div>
+
+<div class="ngay-danh" style="padding: 10px">
+    <div id="div_helpplay">
+        @Model.Description
+    </div>
+</div>i9
+
+<input name="pay_number" id="pay_number" value="@(Model.ThanhToan1K)" type="hidden">
+<input name="bet_rate" id="bet_rate" value="@(Model.ThangGap)" type="hidden">
+<input name="max_bet_numbers" id="max_bet_numbers" value="@(Model.SoLuongXien)" type="hidden">

@@ -1,0 +1,35 @@
+﻿
+<div class="modal-header">
+    <button aria-hidden="true" class="close" data-dismiss="modal" type="button" ng-click="vm.cancel()">×</button>
+    <h4 class="modal-title">Lấy kết quả xổ số theo ngày<span class="o_subtitle text-muted small"></span></h4>
+</div>
+
+<div class="modal-body o_act_window">
+    <div class="o_form_view o_form_nosheet o_form_editable" kendo-validator="vm.validator">
+        <div class="o_group">
+            <p>Để trống sẽ lấy ngày hiện tại</p>
+            <table class="o_group o_inner_group">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label o_form_label_help" data-original-title="" title="">
+                                Ngày
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input kendo-date-picker
+                                   k-ng-model="vm.date"
+                                   style="width: 100%;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.save()">Lấy kết quả</button>
+    <button class="btn btn-default btn-sm" type="button" ng-click="vm.cancel()">Đóng</button>
+</div>
+

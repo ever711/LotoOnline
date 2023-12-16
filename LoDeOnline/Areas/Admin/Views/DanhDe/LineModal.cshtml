@@ -1,0 +1,123 @@
+﻿
+<div class="modal-header">
+    <button aria-hidden="true" class="close" data-dismiss="modal" type="button" ng-click="vm.cancel()">×</button>
+    <h4 class="modal-title">Số đánh<span class="o_subtitle text-muted small"></span></h4>
+</div>
+
+<div class="modal-body o_act_window">
+    <div class="o_form_view o_form_nosheet o_form_editable" kendo-validator="vm.validator">
+        <div class="o_group">
+            <table class="o_group o_inner_group o_group_col_6">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Loại đề
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <select kendo-combo-box
+                                    k-ng-model="vm.model.LoaiDe"
+                                    name="vm.model.LoaiDe"
+                                    k-data-text-field="'Name'"
+                                    k-data-value-field="'Id'"
+                                    k-filter="'contains'"
+                                    k-auto-bind="false"
+                                    k-change="vm.onChangeLoaiDe"
+                                    k-data-source="vm.loaiDeDataSource"
+                                    style="width: 100%"></select>
+                            <span class="k-invalid-msg" data-for="vm.model.LoaiDe"></span>
+                        </td>
+                    </tr>
+                    <tr ng-hide="vm.model.IsXien === true">
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label o_form_label_help">
+                                Số
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input type="text" class="form-control" ng-model="vm.model.SoDanh" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="o_group o_inner_group o_group_col_6">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Số lượng
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input class="o_form_required" kendo-numeric-text-box focus-select-all-text k-ng-model="vm.model.Quantity" name="vm.model.Quantity" style="width: 100%;" required validationMessage="Nhập số lượng" />
+                            <span class="k-invalid-msg" data-for="vm.model.Quantity"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Đơn giá
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input class="o_form_required" kendo-numeric-text-box focus-select-all-text k-min="0" k-ng-model="vm.model.PriceUnit" name="vm.model.PriceUnit" style="width: 100%;" required validationMessage="Nhập đơn giá" />
+                            <span class="k-invalid-msg" data-for="vm.model.PriceUnit"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Thành tiền
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <span class="o_form_field">{{vm.priceSubTotal() | number}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="o_group" ng-show="vm.model.IsXien === true">
+            <div class="o_form_field o_view_manager_content">
+                <div class="table-responsive">
+                    <table class="o_list_view table table-condensed table-striped">
+                        <thead>
+                            <tr>
+                                <th>Số xiên</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="line in vm.model.XienNumbers">
+                                <td>
+                                    <input type="text" class="form-control" placeholder="Nhập 1 số trong dãy số xiên, vd: 24" ng-model="line.SoXien" />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-default btn-sm" ng-click="vm.remove_xien_line($index)"><span class="fa fa-trash-o"></span></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"><a ng-click="vm.add_xien_line()">Thêm số xiên</a></td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.save()">Lưu</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.saveAndCreate()" ng-show="vm.item == null">Lưu và thêm mới</button>
+    <button class="btn btn-default btn-sm" type="button" ng-click="vm.cancel()">Đóng</button>
+</div>
+

@@ -1,0 +1,37 @@
+﻿@model LoDeOnline.Models.HomeIndexViewModel
+@{
+    var dai_cur = Model.Dais.FirstOrDefault();
+}
+
+<div class="card" id="resultlottery">
+    <div class="card-body">
+        <div class="row">
+            @*<div class="col-md-3">
+                    <input id="number" type="text" name="so" class="form-control txt-red" placeholder="Nhập số">
+                </div>*@
+            <div class="col-md-3">
+                <input type="text" name="so" id="date" value="@Model.Date.ToString("d")" class="form-control ngaydo txt-red" placeholder="Chọn ngày">
+            </div>
+            <div class="col-md-4">
+                <div id="load_city">
+                    <select id="daido" name="city" class="form-control txt-red" placeholder="Chọn đài">
+                        @foreach (var dai in Model.Dais)
+                        {
+                            <option value="@dai.Value">@dai.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <input type="button" id="kqxs-btn" value="Xem" class="btn btn-danger">
+            </div>
+        </div>
+
+        <div id="kqxs-div" class="mt-3">
+            @if (dai_cur != null)
+            {
+                @Html.Action("LoadKetQua", "KetQuaXoSo", new { date = Model.Date.ToString("d"), daiId = dai_cur.Value })
+            }
+        </div>
+    </div>
+</div>

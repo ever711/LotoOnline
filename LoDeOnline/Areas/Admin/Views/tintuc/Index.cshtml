@@ -1,0 +1,38 @@
+﻿@model IEnumerable<LoDeOnline.Domain.TinTuc>
+
+<p style="padding-top:30px;">
+    DANH SÁCH TIN TỨC
+    <br />
+    @Html.ActionLink("Thêm tin mới", "Create")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            Tiêu đề
+        </th>
+        <th>
+            Thời gian
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiGian)
+        </td>
+        <td>
+            @Html.ActionLink("Sửa", "Edit", new { id=item.MaTin }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.MaTin }) |
+            @Html.ActionLink("Xoá", "Delete", new { id=item.MaTin })
+        </td>
+    </tr>
+}
+
+</table>

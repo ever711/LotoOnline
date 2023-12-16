@@ -1,0 +1,8 @@
+﻿<ul class="f-p-links">
+    <li><a href="@Url.RouteUrl("Manage", new { controller = "Manage", action = "Index", type = "thong-tin-tai-khoan" })" class="@(Request.Path.Equals("/quan-ly/thong-tin-tai-khoan") ? Html.Raw("active") : Html.Raw(""))"><i class="fa fa-user"></i> Thông tin tài khoản</a></li>
+    <li><a href="@Url.RouteUrl("Manage", new { controller = "Manage", action = "Index", type = "lich-su-dat-cuoc" })" class="@(Request.Path.Equals("/quan-ly/lich-su-dat-cuoc") ? Html.Raw("active") : Html.Raw(""))"><i class=" fa fa-share-alt"></i> Lịch sử đặt cược</a></li>
+    <li><a href="@Url.RouteUrl("Manage", new { controller = "Manage", action = "Index", type = "nap-tien-thu-cong" })" class="@(Request.Path.Equals("/quan-ly/nap-tien-thu-cong") ? Html.Raw("active") : Html.Raw(""))"><i class=" fa fa-file-text"></i> Nạp tiền</a></li>
+    <li><a href="@Url.RouteUrl("Manage", new { controller = "Manage", action = "Index", type = "rut-tien-thu-cong" })" class="@(Request.Path.Equals("/quan-ly/rut-tien-thu-cong") ? Html.Raw("active") : Html.Raw(""))"><i class=" fa fa-paypal"></i> Rút tiền</a></li>
+    <li><a href="@Url.RouteUrl("Manage", new { controller = "Manage", action = "Index", type = "doi-mat-khau" })" class="@(Request.Path.Equals("/quan-ly/doi-mat-khau") ? Html.Raw("active") : Html.Raw(""))"><i class="fa fa-lock"></i> Đổi mật khẩu</a></li>
+    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
+</ul>

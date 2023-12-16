@@ -1,0 +1,113 @@
+﻿
+.so-item {
+    display: inline-block;
+    padding: 3px 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-bottom: 10px;
+}
+
+    .so-item.so-act, .so-item:hover {
+        background: #dcdbdb;
+        border: 1px solid #d70a0a;
+        color: #d70a0a;
+    }
+
+.ngay-danh {
+    border-top: 2px solid #d70a0a;
+    padding-top: 15px;
+    background: #efefef;
+    padding-bottom: 10px;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.ngay {
+    border: 1px solid #bfbfbf;
+    color: #000;
+    float: left;
+    font-size: 14px;
+    padding: 8px;
+    text-align: center;
+    width: 200px;
+    height: 40px;
+}
+
+.ngay.act {
+    background: #d7d7d7;
+    border-right: 0;
+}
+
+.tien {
+    border: 1px solid #bfbfbf;
+    display: inline-block;
+    float: left;
+    width: 160px;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.tienmotcon, .tongtiendanh {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 5px;
+    width: 121px;
+    font-size: 14px;
+    text-align: center;
+    height: 32px;
+}
+
+.btn-danhde {
+    background: #d70a0a;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    padding: 9px 31px;
+    text-transform: uppercase;
+}
+
+.tien.act {
+    background: #d7d7d7;
+    border-right: 0;
+}
+
+.danh-de {
+    text-align: center;
+}
+
+.tien-danh {
+    margin: 10px 0;
+}
+
+.o_form_view .o_group {
+    display: inline-block;
+    width: 100%;
+    margin: 10px 0;
+}
+
+    .o_form_view .o_group.o_inner_group > tbody > tr > td {
+        vertical-align: top;
+    }
+
+    .o_form_view .o_group.o_inner_group > tbody > tr > td.o_td_label {
+        width: 1%;
+        padding: 0 15px 0 0;
+        min-width: 150px;
+    }
+
+    .o_form_view .o_group .o_td_label + td {
+        padding: 0px 45px 7px 8px;
+    }
+
+.o_form_textarea {
+    white-space: pre-wrap;
+}
+

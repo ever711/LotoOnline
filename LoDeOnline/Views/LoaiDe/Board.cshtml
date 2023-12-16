@@ -1,0 +1,19 @@
+﻿@using LoDeOnline.Models;
+@model LoaiDeBoard
+@{
+    var cur = Model.LoaiDes.Count > 0 ? Model.LoaiDes[0] : null;
+}
+<div id="tabBetType">
+    @for (var i = 0; i < Model.LoaiDes.Count; i++)
+    {
+        var ld = Model.LoaiDes[i];
+        <button class="btn btn-default loai-de @(i == 0 ? "active": "")" data-multi="@(ld.Multi)" data-name="@ld.Name" data-id="@(ld.Id)">@ld.Name</button>
+    }
+</div>
+
+<div id="loai_de_info">
+    @if (cur != null)
+    {
+        @Html.Partial("Info", cur)
+    }
+</div>

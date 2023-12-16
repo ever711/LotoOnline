@@ -1,0 +1,114 @@
+﻿<div class="o_form_view" kendo-validator="vm.validator" ng-class="{o_form_readonly: vm.actual_mode == 'view', o_form_editable: vm.actual_mode != 'view'}">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <table class="o_group o_inner_group m-b">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Tên nhóm quyền
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 50%;">
+                            <input ng-hide="vm.actual_mode == 'view'" class="form-control o_form_field" ng-model="vm.model.Name" name="vm.model.Name" required validationMessage="Nhập tên nhóm quyền" type="text">
+                            <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Name}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <uib-tabset active="active" class="tab-container">
+                <uib-tab index="0" heading="Quyền truy cập">
+                    <div class="o_form_field o_view_manager_content">
+                        <div class="table-responsive">
+                            <table class="o_list_view table table-condensed table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Tên</th>
+                                        <th>Xem</th>
+                                        <th>Thêm</th>
+                                        <th>Sửa</th>
+                                        <th>Xóa</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr ng-repeat="line in vm.modelAccesses">
+                                        <td>{{line.Name}}</td>
+                                        <td>
+                                            <span ng-show="line.PermRead == true" class="fa fa-check"></span>
+                                            <span ng-show="line.PermRead == false" class="fa fa-remove"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-show="line.PermCreate == true" class="fa fa-check"></span>
+                                            <span ng-show="line.PermCreate == false" class="fa fa-remove"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-show="line.PermWrite == true" class="fa fa-check"></span>
+                                            <span ng-show="line.PermWrite == false" class="fa fa-remove"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-show="line.PermUnlink == true" class="fa fa-check"></span>
+                                            <span ng-show="line.PermUnlink == false" class="fa fa-remove"></span>
+                                        </td>
+                                        <td>
+                                            <button type="button" ng-hide="vm.actual_mode == 'view'" class="btn btn-default btn-sm" ng-click="vm.editModelAccess($index)"><span class="fa fa-edit"></span></button>
+                                            <button type="button" ng-hide="vm.actual_mode == 'view'" class="btn btn-default btn-sm" ng-click="vm.removeModelAccess($index)"><span class="fa fa-trash-o"></span></button>
+                                        </td>
+                                    </tr>
+                                    <tr ng-hide="vm.model.State == 'view'">
+                                        <td colspan="6" class="o_form_field_x2many_list_row_add"><a ng-click="vm.addModelAccess()">Thêm một dòng</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </uib-tab>
+                <uib-tab index="1" heading="Kế thừa">
+                    <select kendo-multi-select
+                            ng-hide="vm.actual_mode == 'view'"
+                            k-data-text-field="'NameGet'"
+                            k-data-value-field="'Id'"
+                            k-min-length="1"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="vm.groupDataSource" k-ng-model="vm.model.Implieds"></select>
+                    <span ng-show="vm.actual_mode == 'view'" ng-repeat="group in vm.model.Implieds" class="badge badge-info">{{group.NameGet}}</span>
+                </uib-tab>
+                <uib-tab index="2" heading="Người dùng">
+                    <select kendo-multi-select
+                            ng-hide="vm.actual_mode == 'view'"
+                            k-data-text-field="'Name'"
+                            k-data-value-field="'Id'"
+                            k-min-length="1"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="vm.userDataSource" k-ng-model="vm.model.Users"></select>
+                    <span ng-show="vm.actual_mode == 'view'" ng-repeat="user in vm.model.Users" class="badge badge-info">{{user.Name}}</span>
+                </uib-tab>
+                <uib-tab index="3" heading="Quy định">
+                    <select kendo-multi-select
+                            ng-hide="vm.actual_mode == 'view'"
+                            k-data-text-field="'NameGet'"
+                            k-data-value-field="'Id'"
+                            k-min-length="1"
+                            k-filter="'contains'"
+                            k-auto-bind="false"
+                            k-data-source="vm.irRuleDataSource" k-ng-model="vm.model.Rules"></select>
+                    <span ng-show="vm.actual_mode == 'view'" ng-repeat="rule in vm.model.Rules" class="badge badge-info">{{rule.NameGet}}</span>
+                </uib-tab>
+            </uib-tabset>
+        </div>
+    </div>
+</div>
+

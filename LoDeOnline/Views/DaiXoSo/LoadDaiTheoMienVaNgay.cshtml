@@ -1,0 +1,7 @@
+﻿@model IEnumerable<LoDeOnline.Models.DaiXoSoViewModel>
+<select id="daido" name="city" class="form-control txt-red" placeholder="Chọn đài">
+    @foreach (var dai in Model)
+    {
+        <option data-name="@dai.Name" value="@dai.Id">@dai.Name</option>
+    }
+</select>

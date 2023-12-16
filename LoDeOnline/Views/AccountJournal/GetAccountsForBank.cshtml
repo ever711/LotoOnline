@@ -1,0 +1,9 @@
+﻿@model IEnumerable<SelectListItem>
+
+<select id="from_overview_naptien_account" name="JournalId" class="form-control">
+    <option value=""></option>
+    @foreach(var item in Model)
+    {
+        <option value="@item.Value">@item.Text</option>
+    }
+</select>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<LoDeOnline.Models.TinTuc>
+@{
+    ViewBag.Title = "Trang tin tuc";
+}
+
+<h2>KINH NGHIỆM CÁ CƯỢC</h2>
+
+<table class="table">
+    @{ 
+        int i = 0;
+        foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @(i = i + 1).
+                    @Html.DisplayFor(modelItem => item.TieuDe)
+                    <br />
+                    <i>@Html.ActionLink("Đọc thêm", "Details", new { id = item.MaTin })</i> 
+                </td>
+
+            </tr>
+
+            }
+        }
+
+</table>

@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "~/Views/Shared/_RootHead.cshtml";
+}
+
+<div class="container">
+    @Html.Partial("Header")
+    <div class="header-menu mb-3">
+        @Html.Action("TopMenu", "LoDeCategory")
+    </div>
+    <div class="master-wrapper-content">
+        <div class="master-column-wrapper">
+            @RenderBody()
+        </div>
+    </div>
+    @Html.Action("Footer", "Common")
+</div>

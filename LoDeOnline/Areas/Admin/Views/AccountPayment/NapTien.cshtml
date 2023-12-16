@@ -1,0 +1,32 @@
+﻿
+
+<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li class="active">Khách hàng nạp tiền</li>
+    </ol>
+    <div class="o_cp_left">
+        <div class="o_cp_sidebar">
+            <div class="btn-group o_dropdown" uib-dropdown>
+                <button class="btn-default btn btn-sm dropdown-toggle" uib-dropdown-toggle>
+                    Thao tác  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                    <li>
+                        <a ng-click="vm.actionPost()">
+                            Xác nhận
+                        </a>
+                    </li>
+                    <li>
+                        <a ng-click="vm.unlink()">
+                            Xóa
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+<div kendo-grid="vm.gridNapTien" k-options="vm.napTienGridOptions"></div>

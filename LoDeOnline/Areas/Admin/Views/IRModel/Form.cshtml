@@ -1,0 +1,33 @@
+﻿<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.irmodel.list">Đối tượng</a></li>
+        <li class="active" ng-show="vm.id">{{vm.model.Name}}</li>
+        <li class="active" ng-hide="vm.id">Thêm</li>
+    </ol>
+    <div class="o_cp_left">
+        <div class="o_cp_buttons">
+            <div class="o_form_buttons_view" style="display: block;" ng-show="vm.actual_mode == 'view'">
+                <button accesskey="a" class="btn btn-primary btn-sm o_form_button_edit" type="button" ng-click="vm.on_button_edit()" ng-disabled="vm.is_disabled">
+                    Sửa
+                </button>
+                <button accesskey="c" class="btn btn-default btn-sm o_form_button_create" type="button" ng-show="vm.id" ng-click="vm.on_button_create()" ng-disabled="vm.is_disabled">
+                    Thêm
+                </button>
+            </div>
+            <div class="o_form_buttons_edit" style="display: block;" ng-hide="vm.actual_mode == 'view'">
+                <button accesskey="s" class="btn btn-danger btn-sm o_form_button_save" type="button" ng-click="vm.on_button_save()" ng-disabled="vm.is_disabled">
+                    Lưu
+                </button>
+                <button accesskey="j" class="btn btn-default btn-sm o_form_button_cancel" type="button" ng-click="vm.on_button_cancel()" ng-disabled="vm.is_disabled">
+                    Bỏ qua
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+@Html.Partial("_Form")
+
+

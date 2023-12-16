@@ -1,0 +1,135 @@
+﻿<div class="o_form_view" kendo-validator="vm.validator" ng-class="{o_form_readonly: vm.actual_mode == 'view', o_form_editable: vm.actual_mode != 'view'}">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Tên quy tắc
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input ng-hide="vm.actual_mode == 'view'" class="form-control o_form_field" ng-model="vm.model.Name" name="vm.model.Name" required validationMessage="Nhập tên" type="text">
+                                <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Name}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Code
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input ng-hide="vm.actual_mode == 'view'" class="form-control o_form_field" ng-model="vm.model.Code" type="text">
+                                <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Code}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Đối tượng
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <select kendo-combo-box
+                                        ng-hide="vm.actual_mode == 'view'"
+                                        k-ng-model="vm.model.Model"
+                                        name="vm.model.Model"
+                                        k-data-text-field="'Name'"
+                                        k-data-value-field="'Id'"
+                                        k-filter="'contains'"
+                                        k-auto-bind="false"
+                                        k-min-length="1"
+                                        k-data-source="vm.irModelDataSource"
+                                        required validationMessage="Chọn đối tượng"
+                                        style="width: 100%"></select>
+                                <span class="k-invalid-msg" data-for="vm.model.Model"></span>
+                                <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Model.Name}}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Hiệu lực
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <div class="o_checkbox o_form_field_boolean o_form_field">
+                                    <input ng-disabled="vm.actual_mode == 'view'" type="checkbox" ng-model="vm.model.Active">
+                                    <span></span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Quyền truy cập
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <div>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-disabled="vm.actual_mode == 'view'" ng-model="vm.model.PermRead" value="true"> Xem
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-disabled="vm.actual_mode == 'view'" ng-model="vm.model.PermCreate" value="true"> Thêm
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-disabled="vm.actual_mode == 'view'" ng-model="vm.model.PermWrite" value="true"> Sửa
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="checkbox" ng-disabled="vm.actual_mode == 'view'" ng-model="vm.model.PermUnlink" value="true"> Xóa
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <table class="o_group o_inner_group o_group_col_6">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Toàn bộ
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <div class="o_checkbox o_form_field_boolean o_form_field">
+                                <input ng-disabled="vm.actual_mode == 'view'" type="checkbox" ng-model="vm.model.Global">
+                                <span></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Nhóm quyền
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <select kendo-multi-select
+                                    ng-hide="vm.actual_mode == 'view'"
+                                    k-data-text-field="'Name'"
+                                    k-data-value-field="'Id'"
+                                    k-min-length="1"
+                                    k-filter="'contains'"
+                                    k-auto-bind="false"
+                                    k-data-source="vm.groupDataSource" k-ng-model="vm.model.Groups"></select>
+                            <span ng-show="vm.actual_mode == 'view'" ng-repeat="group in vm.model.Groups" class="badge badge-info">{{group.NameGet}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

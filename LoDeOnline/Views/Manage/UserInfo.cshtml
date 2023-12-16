@@ -1,0 +1,15 @@
+﻿@model LoDeOnline.Models.UserInfoViewModel
+<div class="row">
+    <div class="col-md-6">
+        <p>
+            Email: @Model.Email <br />
+            Số điện thoại: @(Model.Phone.Substring(0, 5))*****
+        </p>
+    </div>
+    <div class="col-md-6">
+        <div class="float-right">
+            <strong><span class="fa fa-money"></span> Số tiền hiện có:</strong>
+            <span class="h2"><span class="badge badge-danger"> @Model.Credit K</span></span>
+        </div>
+    </div>
+</div>

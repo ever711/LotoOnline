@@ -1,0 +1,58 @@
+﻿
+<div class="modal-header">
+    <button aria-hidden="true" class="close" data-dismiss="modal" type="button" ng-click="vm.cancel()">×</button>
+    <h4 class="modal-title">Quy định<span class="o_subtitle text-muted small"></span></h4>
+</div>
+
+<div class="modal-body o_act_window">
+    <div class="o_form_view o_form_nosheet o_form_editable" kendo-validator="vm.validator">
+        <div class="o_group">
+            <table class="o_group o_inner_group o_group_col_6">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label o_form_label_help" data-original-title="" title="">
+                                Ngày mở số
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <select class="form-control" ng-model="vm.model.Thu">
+                                <option value="all">Tất cả các ngày</option>
+                                <option value="1">Thứ hai</option>
+                                <option value="2">Thứ ba</option>
+                                <option value="3">Thứ tư</option>
+                                <option value="4">Thứ năm</option>
+                                <option value="5">Thứ sáu</option>
+                                <option value="6">Thứ bảy</option>
+                                <option value="0">Chủ nhật</option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="o_group o_inner_group o_group_col_6">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Giờ mở số
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input kendo-time-picker
+                                   k-ng-model="vm.model.TimeOpen"
+                                   style="width: 100%;" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.save()">Lưu</button>
+    <button class="btn btn-primary btn-sm" type="button" ng-click="vm.saveAndCreate()" ng-show="vm.item == null">Lưu và thêm mới</button>
+    <button class="btn btn-default btn-sm" type="button" ng-click="vm.cancel()">Đóng</button>
+</div>
+

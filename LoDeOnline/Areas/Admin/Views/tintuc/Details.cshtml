@@ -1,0 +1,31 @@
+﻿@model LoDeOnline.Models.TinTuc
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 style="padding-top:30px;">Chi tiết</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dd>
+            @Html.DisplayFor(model => model.TieuDe)
+        </dd>
+
+        
+
+        <dd>
+            @*@Html.DisplayFor(model => model.NoiDung)*@
+           @Html.Raw(Model.NoiDung)
+        </dd>
+
+    </dl>
+</div>
+<p>
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,72 @@
+﻿@model LoDeOnline.Models.IndexViewModel
+@{
+    ViewBag.Title = "Manage";
+}
+
+<div class="card o_form_view mb-3">
+    <div class="card-body">
+        @Html.Action("UserInfo", "Manage")
+    </div>
+</div>
+
+@Html.Partial("_BienDeHistory")
+
+<div>
+    <div class="row">
+        <div class="col-md-6">
+            @Html.Partial("NapTien")
+        </div>
+        <div class="col-md-6">
+            @Html.Partial("RutTien")
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#naptien-Amount").autoNumeric('init', {
+            aSep: '.',
+            aDec: ',',
+            aPad: false,
+        });
+
+        $("#ruttien-Amount").autoNumeric('init', {
+            aSep: '.',
+            aDec: ',',
+            aPad: false,
+        });
+
+        jQuery(document.body).on('click', '.show-so-danh', function () {
+            var danh_de_id = $(this).data("id");
+            $.ajax({
+                url: "/Manage/GetSoDanh?danh_de_id=" + danh_de_id,
+                success: function (html) {
+                    $("#danh-de-line-modal .modal-body").html(html);
+                    $("#danh-de-line-modal").modal('show');
+                }
+            })
+        });
+
+        jQuery(document.body).on('change', '#from_overview_naptien_bank', function () {
+            $.ajax({
+                url: "/AccountJournal/GetAccountsForBank?bank_id=" + this.value,
+                success: function (html) {
+                    $("#load-journal").html(html);
+                },
+                error: function () {
+                }
+            });
+        });
+
+        jQuery(document.body).on('change', '#from_overview_ruttien_bank', function () {
+            $.ajax({
+                url: "/AccountJournal/GetAccountsForBank?bank_id=" + this.value,
+                success: function (html) {
+                    $("#load-rt-journal").html(html);
+                },
+                error: function () {
+                }
+            });
+        });
+    });
+</script>

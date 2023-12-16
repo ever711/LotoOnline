@@ -1,0 +1,801 @@
+﻿.clearfix {
+    clear: both;
+}
+
+html, body {
+    min-height: 100%;
+}
+
+@font-face {
+    font-family: "SVN-Wendi";
+    src: url("../fonts/SVN-Wendi.eot?#iefix") format("embedded-opentype"), url("../fonts/SVN-Wendi.woff") format("woff"), url("../fonts/SVN-Wendi.ttf") format("truetype"), url("../fonts/SVN-Wendi.svg#SVN-Wendi") format("svg");
+}
+
+.block {
+    display: block;
+}
+
+.inline-block {
+    display: inline-block;
+    font-size: 15px;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.no-pa-ma {
+    margin: 0;
+    padding: 0;
+}
+
+.full {
+    height: 100%;
+    width: 100%;
+}
+
+.w50 {
+    width: 50%;
+}
+
+.mg0 {
+    margin: 0;
+}
+
+.pd0 {
+    padding: 0;
+}
+
+.mgtb20 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+img {
+    max-width: 100% !important;
+}
+
+body {
+}
+
+a {
+    color: #333333;
+}
+
+    a:focus, a:hover {
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+.pdl10 {
+    padding-left: 10px;
+}
+
+header {
+    background: none repeat scroll 0 0 #993333;
+    border-bottom: 6px solid #FDB719;
+    color: white;
+    line-height: 40px;
+    min-height: 78px;
+    z-index: 10;
+}
+
+    header .container {
+        position: relative;
+    }
+
+footer {
+    background: none repeat scroll 0 0 #660F0F;
+    color: white;
+    font-size: 12px;
+    height: 40px;
+    line-height: 40px;
+}
+
+    footer a {
+        color: white;
+    }
+
+    footer .csmenu li a {
+        margin-right: 15px;
+    }
+
+        footer .csmenu li a:hover {
+            color: #008CBA;
+        }
+
+    footer .list-inline {
+        margin-bottom: 0;
+    }
+
+.social-list {
+    height: 40px;
+    overflow: hidden;
+    padding-top: 8px;
+}
+
+    .social-list li {
+        line-height: 40px;
+    }
+
+.social-icon {
+    display: block;
+    height: 22px;
+    margin: 0;
+    opacity: 0.8;
+    width: 20px;
+}
+
+    .social-icon:hover {
+        opacity: 1;
+    }
+
+.fb-icon {
+    background: url("/Content/images/fb-icon.png") no-repeat scroll center top transparent;
+}
+
+.google-icon {
+    background: url("/Content/images/google-icon.png") no-repeat scroll center top transparent;
+}
+
+.twitter-icon {
+    background: url("/Content/images/twitter-icon.png") no-repeat scroll center top transparent;
+}
+
+.youtube-icon {
+    background: url("/Content/images/youtube-icon.png") no-repeat scroll center top transparent;
+}
+
+.logo {
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: transparent;
+    background-image: url("/Content/images/logo.png");
+    background-origin: padding-box;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    display: block;
+    height: 89px;
+    left: 0;
+    position: absolute;
+    top: 10px;
+    width: 142px;
+    z-index: 10;
+}
+
+.navigator li {
+    font-size: 12px;
+}
+
+.navigator {
+    border-bottom: 1px solid #DDDDDD;
+    margin-top: 25px;
+    padding-bottom: 20px;
+}
+
+.heading-wrp {
+    margin: 0 0 20px 0;
+    padding: 5px 0;
+}
+
+#header .mobile-button {
+    color: #FFFFFF;
+    display: none;
+    float: right;
+    font-size: 25px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+#header .main-menu {
+    display: inline-block;
+    margin-top: 0.3%;
+}
+
+    #header .main-menu .menu-list {
+        list-style: none outside none;
+        margin: 18px 0 0 170px;
+        padding: 0;
+    }
+
+        #header .main-menu .menu-list li {
+            color: #FFFFFF;
+            float: left;
+            margin: 0 20px;
+        }
+
+            #header .main-menu .menu-list li a {
+                color: #FDB719;
+                display: inline-block;
+                font-size: 12px;
+                font-weight: bold;
+                position: relative;
+                text-decoration: none;
+                text-transform: uppercase;
+                white-space: nowrap;
+            }
+
+                #header .main-menu .menu-list li a:hover, #header .main-menu .menu-list li.active a {
+                    color: #F9B478 !important;
+                }
+
+            #header .main-menu .menu-list li.none-pdr a {
+                padding-right: 0;
+            }
+
+        #header .main-menu .menu-list .avatarimg img {
+            height: 49px;
+        }
+
+        #header .main-menu .menu-list li.none-pdr:hover a {
+            background: none repeat scroll 0 0 transparent;
+        }
+
+.account-list li {
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+    .account-list li i {
+        margin-right: 7px;
+    }
+
+    .account-list li.signup {
+        background: none repeat scroll 0 0 #FD7F19;
+        border-radius: 4px 4px 4px 4px;
+        color: #FFFFFF;
+        line-height: 20px;
+        margin-left: 10px;
+        padding: 5px 40px !important;
+        text-align: center;
+    }
+
+    .account-list li a {
+        color: #FDB719;
+    }
+
+    .account-list li.fullname a {
+        color: #FFFFFF;
+    }
+
+.login-wrap {
+    padding: 5px 20px;
+}
+
+    .login-wrap label {
+        font-size: 12px;
+        margin: 10px 0;
+    }
+
+    .login-wrap .btn {
+        background: none repeat scroll 0 0 #993333;
+        border: medium none;
+        color: #FFFFFF;
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+        margin: 20px auto;
+        padding: 13px 70px;
+        text-transform: uppercase;
+    }
+
+        .login-wrap .btn:hover {
+            background: none repeat scroll 0 0 #FDB719;
+        }
+
+    .login-wrap .alert-danger {
+        display: block;
+        font-size: 12px;
+        padding: 7px;
+    }
+
+    .login-wrap .forgetpassword {
+        color: #999999;
+        font-size: 12px;
+    }
+
+    .login-wrap .tempt {
+        font-weight: normal;
+    }
+
+.personal-list {
+    list-style: none outside none;
+    padding: 0;
+}
+
+    .personal-list li {
+        border-bottom: 1px solid #DDDDDD;
+        border-top: 1px solid #F2F2F2;
+        text-transform: uppercase;
+    }
+
+        .personal-list li a {
+            background: none repeat scroll 0 0 #F2F2F2;
+            display: block;
+            font-size: 11px;
+            padding: 20px 10px;
+        }
+
+        .personal-list li.active a, .personal-list li:hover a {
+            background: none repeat scroll 0 0 #DDDDDD;
+            color: #333333;
+            font-weight: bold;
+        }
+
+.trans-tbl tr td {
+    font-size: 12px;
+}
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+    background-color: #333333;
+    border-color: #333333;
+}
+
+.pagination > li > a, .pagination > li > span {
+    font-size: 11px;
+    padding: 4px 12px;
+}
+
+.banner-side {
+    left: 10px;
+    position: fixed;
+    top: 90px;
+}
+
+.banner-side-right {
+    position: fixed;
+    right: 10px;
+    top: 90px;
+}
+
+.banner {
+    display: block;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+    .banner img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+        width: 100%;
+    }
+
+.list-how {
+    margin: 15px auto;
+    width: 90%;
+}
+
+    .list-how li {
+        padding: 0;
+        text-align: center;
+        width: 32%;
+    }
+
+        .list-how li p {
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+.totalbox {
+    background: url("/Content/lode/images/totalbox.png") repeat-x scroll 0 0 #A70808;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 4px 5px #CCCCCC;
+    color: white;
+    height: 107px;
+    padding: 10px;
+    text-align: center;
+}
+
+    .totalbox p {
+        font-size: 18px;
+        margin-top: 7px;
+    }
+
+    .totalbox h1 {
+        margin-top: 10px !important;
+    }
+
+#bottom {
+    background: none repeat scroll 0 0 #993333;
+    margin-top: 30px;
+    padding: 20px 0;
+}
+
+    #bottom h4 {
+        color: #FDB719;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+    }
+
+    #bottom ul {
+        list-style: none outside none;
+        padding: 0;
+    }
+
+        #bottom ul li {
+            color: #F9B478;
+            padding: 4px 0;
+        }
+
+            #bottom ul li a {
+                color: white;
+            }
+
+                #bottom ul li a:hover {
+                    color: #FDB719;
+                }
+
+.result-box {
+    background: none repeat scroll 0 0 #BEBEBE;
+    padding: 5px;
+}
+
+    .result-box input {
+        max-width: 100%;
+    }
+
+    .result-box .col-sm-3, .result-box .col-sm-4, .result-box .col-sm-1 {
+        padding: 0 5px;
+    }
+
+.pdl15 {
+    padding-left: 15px !important;
+}
+
+.result-box .form-control {
+    font-size: 12px;
+}
+
+.result-box .btn {
+    background: none repeat scroll 0 0 #1A2F47;
+    color: white;
+    font-size: 12px;
+    margin-top: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+}
+
+.result-tbl {
+    margin: 15px 0 0;
+}
+
+    .result-tbl td {
+        background: none repeat scroll 0 0 #EBEBEB;
+        font-size: 12px;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+
+        .result-tbl td:first-child {
+            font-weight: bold;
+            width: 100px;
+        }
+
+        .result-tbl td:last-child {
+            font-size: 14px;
+        }
+
+    .result-tbl thead td {
+        color: #993333;
+        font-size: 12px;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    .result-tbl td ul {
+        list-style: none outside none;
+        margin-bottom: 0;
+        padding: 0;
+        text-align: center;
+    }
+
+        .result-tbl td ul li {
+            display: inline-block;
+            margin: 1px 15px;
+        }
+
+.ListGameType {
+    background: none repeat scroll 0 0 #FDB719;
+}
+
+    .ListGameType li a {
+        color: #993333;
+        display: block;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 45px;
+        padding: 0 20px;
+        text-transform: uppercase;
+    }
+
+    .ListGameType li {
+        border-right: 1px solid #FEDF97;
+        margin-left: -5px;
+    }
+
+        .ListGameType li:first-child {
+            margin: 0;
+        }
+
+        .ListGameType li:hover, .ListGameType li.active {
+            background: none repeat scroll 0 0 #993333;
+        }
+
+            .ListGameType li:hover a, .ListGameType li.active a {
+                color: #FFFFFF;
+            }
+
+.ListGame {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+
+    .ListGame li {
+        color: #111111;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 45px;
+        padding: 0 20px;
+    }
+
+        .ListGame li:hover, .ListGame li.active {
+            color: #993333;
+        }
+
+.ListThousand li {
+    background: none repeat scroll 0 0 #DFF0D8;
+    color: #333333;
+    cursor: pointer;
+    font-size: 12px;
+    margin-bottom: 5px;
+    padding: 6px 15px;
+}
+
+    .ListThousand li:hover, .ListThousand li.active {
+        background: none repeat scroll 0 0 #5CB85C;
+        color: #FFFFFF;
+        font-weight: bold;
+    }
+
+.ListNumber {
+    margin: 30px 0;
+}
+
+    .ListNumber li {
+        margin-bottom: 15px;
+        text-align: center;
+        width: 9.5%;
+    }
+
+        .ListNumber li span {
+            background: none repeat scroll 0 0 #DDDDDD;
+            border-radius: 100% 100% 100% 100%;
+            cursor: pointer;
+            display: block;
+            font-size: 12px;
+            height: 30px;
+            line-height: 30px;
+            margin: auto;
+            width: 30px;
+        }
+
+            .ListNumber li span:hover, .ListNumber li span.slt {
+                background: none repeat scroll 0 0 #286090;
+                color: white;
+            }
+
+.betsub {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-top: 2px solid #993333;
+}
+
+    .betsub .ct {
+        line-height: 2em;
+        padding: 20px 10px;
+    }
+
+        .betsub .ct p {
+            margin-bottom: 0;
+        }
+
+.sublist ul {
+    list-style: none outside none;
+    margin: 0 10px 10px 0;
+    padding: 0;
+}
+
+.sublist li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    display: inline-block;
+    font-size: 12px;
+    height: 35px;
+    line-height: 35px;
+    margin-left: -5px;
+    text-align: center;
+    width: 50%;
+}
+
+.sublist ul li:first-child {
+    font-weight: bold;
+}
+
+.sublist ul:first-child {
+    margin-left: 10px;
+}
+
+.sublist ul li .txt {
+    border: medium none;
+    height: 30px;
+    max-width: 100%;
+    outline: medium none;
+    text-align: center;
+}
+
+.numbetdiv {
+    text-align: center;
+}
+
+    .numbetdiv h5 {
+        font-size: 11px;
+    }
+
+    .numbetdiv ul {
+        background: none repeat scroll 0 0 #FFFFFF;
+        list-style: none outside none;
+        margin: 0 15px 10px 6px;
+        padding: 0;
+        text-align: center;
+    }
+
+        .numbetdiv ul li {
+            color: #993333;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 10px 15px;
+        }
+
+.xnbtn {
+    background: none repeat scroll 0 0 #FDB719;
+    color: #111111;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 20px auto;
+    padding: 10px 60px;
+}
+
+    .xnbtn:hover {
+        background: none repeat scroll 0 0 #660F0F;
+        color: #FFFFFF;
+    }
+
+sup {
+    color: red !important;
+}
+
+.datediv {
+    background: none repeat scroll 0 0 #EEEEEE;
+    border-bottom: 2px solid #DDDDDD;
+    font-size: 12px;
+    margin-bottom: 20px;
+    padding: 7px 0;
+}
+
+    .datediv p {
+        margin: 0;
+    }
+
+.banner-side, .banner-side-right {
+    display: none;
+}
+
+.menu-list li.none-pdr {
+    padding-top: 10px;
+}
+
+#header .mobile-button {
+    display: inline-block;
+}
+
+#header .main-menu .menu-list li a:hover {
+    color: #FAA91A;
+}
+
+#header .main-menu {
+    -moz-transition: all 0.2s ease 0s;
+    background: none repeat scroll 0 0 transparent;
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 10;
+}
+
+.menu-active #header .main-menu {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    visibility: visible;
+}
+
+#header .main-menu .menu-list {
+    -moz-transition: all 0.6s ease 0s;
+    background: none repeat scroll 0 0 #993333;
+    color: #FFFFFF;
+    height: 100%;
+    left: -100%;
+    position: fixed;
+    top: 0;
+    width: 200px;
+    z-index: 10;
+}
+
+.menu-active #header .main-menu .menu-list {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    left: 0;
+}
+
+#header .main-menu .menu-list li {
+    float: none;
+    margin: 0 5px;
+}
+
+    #header .main-menu .menu-list li a {
+        padding: 15px 10px;
+    }
+
+    #header .main-menu .menu-list li a {
+        display: block;
+        line-height: normal;
+    }
+
+#header .main-menu .menu-list {
+    margin: 0;
+}
+
+.logo {
+    height: 50px;
+    left: 5px;
+    width: 80px;
+}
+
+.account-list {
+    margin-right: 15px;
+}
+
+    .account-list li {
+        font-size: 11px;
+    }
+
+        .account-list li.signup {
+            margin-left: 0;
+            padding: 5px 10px !important;
+        }
+
+.ListNumber li {
+    width: 19%;
+}
+
+.personal-list {
+    margin-top: 50px;
+}
+
+.login-wrap {
+    padding: 5px;
+}
+
+.xs-hide {
+    display: none;
+}

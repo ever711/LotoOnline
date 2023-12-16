@@ -1,0 +1,15 @@
+﻿@model LoDeOnline.Models.KetQuaXoSoTable
+<h5 class="text-uppercase text-center">@Model.Name</h5>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped" id="kqxs-tbl">
+        <tbody>
+            @foreach (var row in Model.Rows)
+            {
+                <tr>
+                    <td><span class="font-weight-bold">@row.Giai</span></td>
+                    <td class="text-center">@row.SoTrungs</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

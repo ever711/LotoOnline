@@ -1,0 +1,31 @@
+﻿
+<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li class="active">Biên đề</li>
+    </ol>
+    <div class="o_cp_left">
+        <div class="o_cp_buttons">
+            <div class="o_form_buttons_view">
+                <button type="button" class="btn btn-primary btn-sm" ng-click="vm.create()">Thêm</button>
+            </div>
+        </div>
+        <div class="o_cp_sidebar">
+            <div class="btn-group o_dropdown" uib-dropdown>
+                <button class="btn-default btn btn-sm dropdown-toggle" uib-dropdown-toggle>
+                    Thao tác  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                    <li>
+                        <a ng-click="vm.doKetQuaAll()">
+                            Dò kết quả những biên đề chưa dò
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+<div kendo-grid="vm.grid" k-options="vm.gridOptions"></div>

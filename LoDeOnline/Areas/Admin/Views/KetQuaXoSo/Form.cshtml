@@ -1,0 +1,69 @@
+﻿<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.kqxs.list">Kết quả xổ số</a></li>
+        <li class="active" ng-show="vm.id">{{vm.model.Name}}</li>
+        <li class="active" ng-hide="vm.id">Thêm</li>
+    </ol>
+    <div class="o_cp_left">
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+<div class="o_form_view o_form_editable" kendo-validator="vm.validator">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <div class="oe_title">
+                <label class="o_form_label">
+                    Tên
+                </label>
+                <h1>{{vm.model.Name}}</h1>
+            </div>
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Đài xổ số
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                 <span class="o_form_field">{{vm.model.DaiXS.Name}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Ngày
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <span class="o_form_field">{{vm.model.Ngay | date: 'shortDate'}}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="o_horizontal_separator">
+                Chi tiết
+            </div>
+            <div class="o_form_field o_form_field_one2many o_view_manager_content">
+                <div class="table-responsive">
+                    <table class="o_list_view table table-condensed table-striped">
+                        <tr ng-repeat="(key, value) in vm.lines | groupBy: 'Giai'">
+                            <td>{{vm.giais[key]}}</td>
+                            <td>{{vm.so_trung(value)}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

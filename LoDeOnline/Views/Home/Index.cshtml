@@ -1,0 +1,93 @@
+﻿@model LoDeOnline.Models.HomeIndexViewModel
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+            <a class="banner" href="#">
+                <img title="Banner 1" alt="Banner 1" src="/Upload/Images/banner1_636131745738235631.png">
+            </a>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <a class="banner" href="#">
+                <img title="Banner 2" alt="Banner 2" src="/Upload/Images/banner2_636131745972479072.png">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.Partial("DoSo", Model)
+    </div>
+    <div class="col-md-6" id="cbox-outer">
+        <!--quang cao ben phai-->
+        <a class="banner" href="#">
+            <img title="Banner 3" alt="Banner 3" src="/Upload/Images/banner4_636131746251773641.png">
+        </a>
+        <a class="banner" href="#">
+            <img title="Banner 4" alt="Banner 4" src="/Upload/Images/banner5_636131746395848744.png">
+        </a>
+        <!--end quang cao ben phai-->
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            var main = $('#resultlottery');
+            var url = main.attr('action');
+
+            $("#date").datepicker({
+                scrollMonth: false, scrollInput: false,
+                format: 'd-m-Y',
+                lang: "vi",
+                maxDate: "@Model.Date.ToString("d")",
+                timepicker: false,
+                changeYear: true,
+                changeMonth: true,
+                onSelect: function(dateText, inst) {
+                    load_city();
+                }
+            });
+
+            function load_city() {
+                var date = $('#date').val();
+                $.ajax({
+                    url: "/DaiXoSo/LoadDaiTheoNgay?date=" + date,
+                    success: function(html) {
+                        $("#load_city").html(html);
+                    }
+                });
+            }
+
+            //load ket qua
+            jQuery(document.body).on('change', 'select#daido', function () {
+                console.log("change");
+                load_resultlottery();
+                return false;
+            });
+
+            //load ket qua
+            jQuery(document.body).on('click', '#resultlottery #kqxs-btn', function () {
+                load_resultlottery();
+                return false;
+            });
+
+            function load_resultlottery() {
+                var daido = main.find('select#daido').val();
+                var date = main.find('input#date').val();
+
+                $.ajax({
+                    url: "/KetQuaXoSo/LoadKetQua?date=" + date + "&daiId=" + parseInt(daido),
+                    type: "GET",
+                    success: function (data) {
+                        $("#kqxs-div").html(data);
+                    }
+                });
+            }
+        });
+    })(jQuery);
+</script>

@@ -1,0 +1,68 @@
+﻿@model LoDeOnline.Models.TinTuc
+
+@{
+    ViewBag.Title = "Thêm tin mới";
+}
+
+<h2 style="paddig-top:30px;">Thêm tin mới</h2>
+<script type="text/javascript" src="~/Areas/Admin/Themes/ckeditor/ckeditor.js"></script>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">Tiêu đề</div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">Nội dung</div>
+            <div class="col-md-10">
+                <div ass="col-md-10">
+                    @Html.TextAreaFor(model => model.NoiDung, new { @id = "editor", @class = "form-control", @rows = "200" })
+                    @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+                    <script>
+                        CKEDITOR.replace("editor");
+                    </script> 
+                </div>
+
+
+                @*@Html.TextAreaFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })*@
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.ThoiGian, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ThoiGian, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ThoiGian, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+            <div class="col-md-offset-2 col-md-10">
+                
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở lại danh sách tin", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

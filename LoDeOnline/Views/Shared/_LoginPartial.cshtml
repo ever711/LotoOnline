@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="list-inline float-right">
+            <li>
+                <a href="/Manage/Index">Chào @User.Identity.GetUserName()</a>
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Đăng xuất</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="list-inline float-right">
+        <li>
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#login-modal">
+                Đăng nhập
+            </button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#register-modal">
+                Đăng ký
+            </button>
+        </li>
+    </ul>
+
+    <!-- Modal -->
+    <div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("Register", "Account", null,
+          new AjaxOptions { OnSuccess = "successRegisterAccount" }, new { id = "register-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">
+                                    <span class="fa fa-envelope"></span>
+                                </span>
+                            </div>
+                            <input type="text" name="Email" placeholder="Email của bạn" class="form-control" />
+                        </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <span class="fa fa-key"></span>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="Password" placeholder="Mật khẩu" class="form-control" />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <span class="fa fa-key"></span>
+                                        </span>
+                                    </div>
+                                    <input type="password" name="ConfirmPassword" placeholder="Nhập lại mật khẩu" class="form-control" />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <span class="fa fa-phone"></span>
+                                        </span>
+                                    </div>
+                                    <input type="text" name="PhoneNumber" placeholder="Số điện thoại" class="form-control" />
+                                </div>
+                                <p class="text-danger">Điền đúng số điện thoại để có thể rút tiền</p>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="$('#register-form').submit()">Đăng ký</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="login-modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Đăng ký</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @using (Ajax.BeginForm("LoginAjax", "Account", null, new AjaxOptions { OnSuccess = "successLoginAccount" }, new { id = "login-form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-envelope"></span>
+                                    </span>
+                                </div>
+                                <input type="text" name="Email" placeholder="Email của bạn" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-key"></span>
+                                    </span>
+                                </div>
+                                <input type="password" name="Password" placeholder="Mật khẩu" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="RememberMe" value="true">
+                                Ghi nhớ
+                            </label>
+                        </div>
+                        <div>
+                            <a href="/Account/ForgotPassword">Quên mật khẩu</a>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="$('#login-form').submit()">Đăng nhập</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <script>
+        function successRegisterAccount(data) {
+            alert(data.message);
+            if (data.success) {
+                window.location.reload();
+            }
+        }
+
+        function successLoginAccount(data) {
+            if (data.success) {
+                window.location.reload();
+            }
+            else {
+                alert(data.message);
+            }
+        }
+    </script>
+}
+

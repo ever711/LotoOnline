@@ -1,0 +1,114 @@
+﻿@model LoDeOnline.Models.IndexViewModel
+<div class="card o_form_view">
+    <div class="card-header">Rút tiền thủ công</div>
+    <div class="card-body">
+        <script type="text/javascript">
+            function successRutTien(data) {
+                alert(data.message);
+                if (data.success) {
+                    $("#ruttien-form")[0].reset();
+                    $("#from_overview_ruttien_account option").each(function () {
+                        if ($(this).val().length) {
+                            $(this).remove();
+                        }
+                    });
+                }
+            }
+        </script>
+        @using (Ajax.BeginForm("RutTien", "Manage", null,
+                       new AjaxOptions { HttpMethod = "POST", OnSuccess = "successRutTien" }, new { id = "ruttien-form" }))
+        {
+            @Html.AntiForgeryToken()
+            <table class="o_group o_inner_group">
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Ngân hàng
+                        </label>
+                    </td>
+                    <td>
+                        <select name="BankId" id="from_overview_ruttien_bank" class="form-control">
+                            <option></option>
+                            @foreach (var bank in Model.Banks)
+                            {
+                                <option value="@bank.Value">@bank.Text</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Tài khoản gửi
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-rt-journal">
+                            <select id="from_overview_ruttien_account" name="JournalId" class="form-control">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Tên người nhận
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" class="form-control" name="Receiver" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Số tài khoản
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" class="form-control" name="AccNumber" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Số tiền
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" name="Amount" id="ruttien-Amount" class="form-control">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            Nhập mã
+                        </label>
+                    </td>
+                    <td>
+                        <div id="load-journal">
+                            <input type="text" name="Last5PhoneNumber" class="form-control" placeholder="5 số cuối của số điện thoại" />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="o_td_label">
+                        <label class="o_form_label">
+                            &nbsp;
+                        </label>
+                    </td>
+                    <td>
+                        <input type="submit" class="btn btn-danger" value="Rút tiền" />
+                    </td>
+                </tr>
+            </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿
+<div class="bg-light lter b-b wrapper-md ng-scope">
+    <h1 class="m-n font-thin h3 text-black">
+        <a ui-sref="app.resgroup.list">Nhóm quyền</a> - {{::vm.model.Name}}
+    </h1>
+</div>
+
+<div class="wrapper-md ng-scope">
+    <div class="m-b">
+        <button type="button" ng-click="vm.update()" class="btn btn-danger">Lưu</button>
+    </div>
+
+    <div>
+        @Html.Partial("_Form")
+    </div>
+</div>

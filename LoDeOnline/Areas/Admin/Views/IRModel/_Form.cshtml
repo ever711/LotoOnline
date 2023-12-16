@@ -1,0 +1,34 @@
+﻿<div class="o_form_view" kendo-validator="vm.validator" ng-class="{o_form_readonly: vm.actual_mode == 'view', o_form_editable: vm.actual_mode != 'view'}">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <table class="o_group o_inner_group">
+                <tbody>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Tên đối tượng
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input ng-hide="vm.actual_mode == 'view'" class="form-control o_form_field" ng-model="vm.model.Name" name="vm.model.Name" required validationMessage="Nhập tên" type="text">
+                            <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Name}}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="1" class="o_td_label">
+                            <label class="o_form_label">
+                                Model
+                            </label>
+                        </td>
+                        <td colspan="1" style="width: 100%;">
+                            <input ng-hide="vm.actual_mode == 'view'" class="form-control o_form_field" ng-model="vm.model.Model" name="vm.model.Model" required validationMessage="Nhập Model" type="text">
+                            <span class="o_form_field" ng-show="vm.actual_mode == 'view'">{{vm.model.Model}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

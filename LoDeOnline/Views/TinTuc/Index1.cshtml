@@ -1,0 +1,412 @@
+﻿@model LoDeOnline.Models.LoDeCategoryShow
+@{
+    var dai_cur = Model.Dais.Count > 0 ? Model.Dais[0] : null;
+}
+
+<div class="row">
+    <div class="col-xs-2">
+        <input type="text" name="date" id="date" value="@Model.Date.ToString("d")" class="form-control date_bet txt-red" placeholder="Chọn ngày">
+        <div name="date_error" class="error"></div>
+    </div>
+    <div class="col-xs-3">
+        <div id="load_city">
+            @Html.Partial("~/Views/DaiXoSo/LoadDaiTheoMienVaNgay.cshtml", Model.Dais)
+        </div>
+        <div name="city_error" class="error"></div>
+    </div>
+</div>
+
+<div>
+    @for (var i = 0; i < Model.LoaiDeCategs.Count; i++)
+    {
+        var categ = Model.LoaiDeCategs[i];
+        <button class="btn btn-default loai-de-categ @(i == 0 ? "active": "")" data-id="@categ.Id">@categ.Name</button>
+    }
+</div>
+
+<div id="loai-de-list"></div>
+
+<div>
+    <div class="fl" style="margin-top: 10px;">
+        <div class="ngay act">Ngày đánh</div>
+        <div class="ngay" id="ngaydanh">@Model.Date.ToString("dd-MM-yyyy")</div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="fr" style="margin-top: 10px;">
+        <div class="ngay act">Đài</div>
+        <div class="ngay" id="daidanh">@(dai_cur != null ? dai_cur.Name : "")</div>
+        <div class="clearfix"> </div>
+    </div>
+    <div class="clearfix"> </div>
+    <div style="margin-top: 10px;"></div>
+    <div class="fl">
+        <div class="ngay act">Loại đề</div>
+        <div class="ngay" id="loaidedanh">Đánh Đầu</div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="fr">
+        <div class="ngay act">Số đánh</div>
+        <div class="ngay" id="sodanh" style="height: auto; min-height: 40px;"></div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="tien-danh">
+        <div class="fl">
+            <div class="tien act">Tổng tiền đánh (K)</div>
+            <input type="text" name="amount" placeholder="0" class="format_currency tongtiendanh" id="tongtiendanh">
+        </div>
+        <div class="fl" style="margin-left: 10px;">
+            <div class="tien act">
+                Số tiền trên 1 con (K)
+            </div>
+            <input type="text" id="tienmotcon" class="tienmotcon" placeholder="0">
+        </div>
+        <div class="fr">
+            <div style="width: 173px;" class="tien act">Tiền thắng/1 con (K)</div>
+            <div class="tien input-width">
+                <span class="format_currency tienthang1con " id="tienthang1con">0,0 K</span>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+
+    <div class="danh-de">
+        <div class="clear"></div>
+        <div name="bet_numbers_error" class="error"></div>
+        <div class="clear"></div>
+        <div name="bet_code_error" class="error"></div>
+        <div class="clear"></div>
+        <div name="loto_id_error" class="error"></div>
+        <div class="clear"></div>
+        <div name="amount_error" class="error"></div>
+        <div class="clear"></div>
+        <div name="date_error" class="error"></div>
+        <div class="clear"></div>
+        <div name="user_error" class="error"></div>
+        <div class="clear"></div>
+      
+        <input name="bet_numbers" id="bet_numbers" value="" type="hidden">
+        <input name="bet_code" id="bet_code" value="dauduoi_dau" type="hidden">
+        <input name="loto_id" id="loto_id" value="16" type="hidden">
+
+        <input name="bet_rate" id="bet_rate" value="8.70" type="hidden">
+        <input name="user" id="bet_user" value="" type="hidden">
+        <div class="clearfix"></div>
+
+        <input type="button" class="btn-danhde" value="Xác nhận">
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var config_max_bet_numbers = 10;
+        var loai_de_categ_cur = $('.loai-de-categ.active');
+        if (loai_de_categ_cur) {
+            load_board(loai_de_categ_cur);
+        }
+
+        jQuery(document.body).on('click', '.loai-de-categ', function () {
+            if ($(this).hasClass('active'))
+                return;
+            $('.loai-de-categ.active').removeClass('active');
+            $(this).addClass('active');
+            load_board($(this));
+        });
+
+        jQuery(document.body).on('click', '.loai-de', function () {
+            if ($(this).hasClass('active'))
+                return;
+            $('.loai-de.active').removeClass('active');
+            $(this).addClass('active');
+            load_loai_de_info($(this));
+        });
+
+        $(".date_bet").datepicker({
+            scrollMonth: false, scrollInput: false,
+            format: 'd-m-Y',
+            lang: "vi",
+            timepicker: false,
+            changeYear: true,
+            changeMonth: true,
+            minDate: "@(Model.Date.ToString("d"))",
+            onSelectDate: function (dp, $input) {
+            }
+        });
+
+        $("#tienmotcon").autoNumeric('init', {
+            aSep: '.',
+            aDec: ',',
+            aPad: false,
+        });
+
+        $("#tongtiendanh").autoNumeric('init', {
+            aSep: '.',
+            aDec: ',',
+            aPad: false,
+        });
+
+        function show_loai_de() {
+            var element = $('.loai-de.active');
+            var name = element.data("name");
+            $('#loaidedanh').html("Đánh " + name);
+        }
+
+        function load_loai_de_info(ld) {
+            var id = ld.data('id');
+            $.ajax({
+                url: "/LoaiDe/Info?id=" + id,
+            }).done(function (html) {
+                $("#loai_de_info").html(html);
+                show_loai_de();
+                load_total_amount();
+            });
+        }
+
+        function load_board(categ) {
+            var lode_categ_id = "@Model.Id";
+            var categ_id = categ.data('id');
+            $.ajax({
+                url: "/LoaiDe/Board?categ_id=" + categ_id + "&lode_categ_id=" + lode_categ_id,
+            }).done(function (html) {
+                $("#loai-de-list").html(html);
+                show_loai_de();
+                load_total_amount();
+            });
+        }
+
+        //click chon so
+        jQuery(document.body).on('click', '#loto_type_info .so-item', function () {
+            if ($(this).hasClass('so-act')) {
+                $(this).removeClass('so-act')
+            } else {
+                $(this).addClass('so-act');
+            }
+            load_number_bet($(this));
+        });
+
+        function load_number_bet(cur) {
+            //so duoc danh toi da
+            var max_bet_numbers = $('#max_bet_numbers').val();
+            max_bet_numbers = parseInt(max_bet_numbers);
+
+            var numbers = $('span.so-item.so-act');
+            var numbers_bet = new Array();
+            jQuery.each(numbers, function (i, val) {
+                var number = $(this).text();
+                numbers_bet.push(number);
+            });
+            numbers_bet = $.unique(numbers_bet);
+            if (max_bet_numbers > 0 && numbers_bet.length > max_bet_numbers) {
+                alert('Bạn chỉ được chọn ' + max_bet_numbers + ' số đánh');
+                cur.removeClass('so-act');
+                return false;
+            }
+            if (numbers_bet.length > config_max_bet_numbers) {
+                alert('Bạn chỉ được chọn tối đa ' + config_max_bet_numbers + ' số đánh');
+                cur.removeClass('so-act');
+                return false;
+            }
+
+            var bet_numbers_val = numbers_bet.join(' - ');
+            $('.danh-de').find('input#bet_numbers').val(bet_numbers_val);
+            $('#sodanh').html(bet_numbers_val);
+            //load tong so tien thanh toan
+            load_total_amount();
+        }
+
+        function parse_number(value) {
+            var tmp2 = value;
+            do {
+                tmp = tmp2;
+                tmp2 = tmp.replace(".", "");
+            } while (tmp !== tmp2);
+            var reformatted_value = tmp.replace(",", ".");
+            var parsed = Number(reformatted_value);
+            if (isNaN(parsed)) {
+                throw new Error(sprintf("'%s' is not a correct float"), value);
+            }
+            return parsed;
+        }
+
+        jQuery(document.body).on('keyup', '#tongtiendanh', function () {
+            var tongtiendanh = $('#tongtiendanh').autoNumeric('get');
+            tongtiendanh = parse_number(tongtiendanh);
+
+            var rate = $('input#bet_rate').val();
+            rate = parse_number(rate);
+
+            var pay_number = $('input#pay_number').val();
+            pay_number = parse_number(pay_number);
+
+
+            var numbers = $('#sodanh').text();
+            numbers = numbers.split(' - ');
+
+            var total_number = numbers.length;
+            var multi = $('#tabBetType .active').data('multi');
+            if (!multi) {
+                total_number = 1;
+            }
+            $('#tienmotcon').autoNumeric('set', (tongtiendanh / pay_number / total_number).toFixed(3));
+            var tienthang1con = (tongtiendanh / pay_number / total_number).toFixed(3) * rate;
+            tienthang1con = format_number(tienthang1con) + ' K';
+            $('#tienthang1con').html(tienthang1con);
+        });
+
+        jQuery(document.body).on('keyup', '#tienmotcon', function () {
+            load_total_amount();
+        });
+
+        function load_total_amount() {
+            var tienmotcon = $('#tienmotcon').autoNumeric('get');
+            tienmotcon = parse_number(tienmotcon);
+            var rate = $('input#bet_rate').val();
+            rate = parse_number(rate);
+
+            var pay_number = $('input#pay_number').val();
+            pay_number = parse_number(pay_number);
+            tienmotcon = parseInt(tienmotcon);
+
+            var numbers = $('#sodanh').text();
+            numbers = numbers.split(' - ');
+
+            var total_number = numbers.length;
+            var multi = $('#tabBetType .active').data('multi');
+            if (!multi) {
+                total_number = 1;
+            }
+            $('#tongtiendanh').autoNumeric('set', (tienmotcon * pay_number * total_number).toFixed(3));
+            var tienthang1con = tienmotcon * rate;
+            tienthang1con = format_number(tienthang1con) + ' K';
+            $('#tienthang1con').html(tienthang1con);
+        }
+
+        function format_number(value) {
+            var digits = [69, 2];
+            digits = typeof (digits) === "string" ? eval(digits) : digits;
+            var precision = digits[1];
+            var formated = sprintf('%.' + precision + 'f', value).split('.');
+            formated[0] = insert_thousand_seps(formated[0]);
+            return formated.join(',');
+        }
+
+        function insert_thousand_seps(num) {
+            var negative = num[0] === '-';
+            num = (negative ? num.slice(1) : num);
+            return (negative ? '-' : '') + intersperse(num, [3, 0], '.');
+        }
+
+        function intersperse(str, indices, separator) {
+            separator = separator || '';
+            var result = [], last = str.length;
+            for (var i = 0; i < indices.length; i++) {
+                var section = indices[i];
+                if (section === -1 || last <= 0) {
+                    break;
+                } else if (section === 0 && i === 0) {
+                    break;
+                } else if (section === 0) {
+                    section = indices[--i];
+                }
+
+                result.push(str.substring(last - section, last));
+                last -= section;
+            }
+
+            var s = str.substring(0, last);
+            if (s) {
+                result.push(s);
+            }
+
+            return result.reverse().join(separator);
+        }
+
+
+        function parse_value(value, descriptor, value_if_empty) {
+            var tmp;
+            switch (descriptor.type) {
+                case 'float':
+                    var tmp2 = value;
+                    do {
+                        tmp = tmp2;
+                        tmp2 = tmp.replace(".", "");
+                    } while (tmp !== tmp2);
+                    var reformatted_value = tmp.replace(",", ".");
+                    var parsed = Number(reformatted_value);
+                    if (isNaN(parsed)) {
+                        throw new Error(sprintf("'%s' is not a correct float"), value);
+                    }
+                    return parsed;
+            }
+        }
+
+        jQuery(document.body).on('click', '.btn-danhde', function () {
+            var date = $(".date_bet").datepicker('getDate');
+            var daiId = parseInt($("#daido").val());
+            var soDanh = $("#sodanh").text();
+            var quantity = parse_number($("#tienmotcon").autoNumeric("get"));
+            var loaiDeId = parseInt($('#tabBetType .active').data("id"));
+            var data = {
+                Date: $(".date_bet").val(),
+                DaiId: daiId,
+                SoDanh: soDanh,
+                Quantity: quantity,
+                LoaiDeId: loaiDeId,
+            };
+            var strconfirm = "BẠN ĐÃ CHỌN:\n\n";
+            strconfirm += "Ngày đánh: " + $("#ngaydanh").text() + "\n" + "Đài đánh: " + $("#daido option:selected").text() + "\n";
+            strconfirm += "Loại đề: Đánh " + $('#tabBetType .active').data("name") + "\n" + "Số đánh: " + data.SoDanh + "\n";
+            strconfirm += "Tổng tiền đánh: " + format_number($("#tongtiendanh").autoNumeric('get')) + " K";
+            strconfirm += "\n\nBạn có chắc chắn muốn đánh không?";
+
+            if (confirm(strconfirm) === false) return;
+            $.ajax({
+                url: "/DanhDe/Ghi",
+                type: "POST",
+                data: data,
+                success: function (data) {
+                    if (data.success) {
+                        reLoadDataForm();
+                    }
+
+                    alert(data.message);
+                }
+            });
+        });
+
+        function reLoadDataForm() {
+            $("#sodanh").html("");
+            $("#tienmotcon").val("0");
+            $("#tienthang1con").text("0,00 K");
+            $("#tongtiendanh").val("0");
+            $('.so-item').each(function () {
+                if ($(this).hasClass('so-act')) {
+                    $(this).removeClass('so-act');
+                }
+            });
+        }
+
+        function datetime_to_str(obj) {
+            if (!obj) {
+                return '';
+            }
+            return lpad(obj.getUTCFullYear(), 4) + "-" + lpad(obj.getUTCMonth() + 1, 2) + "-"
+                + lpad(obj.getUTCDate(), 2) + " " + lpad(obj.getUTCHours(), 2) + ":"
+                + lpad(obj.getUTCMinutes(), 2) + ":" + lpad(obj.getUTCSeconds(), 2);
+        }
+
+        function datetime_to_strdate(obj) {
+            if (!obj) {
+                return '';
+            }
+            return lpad(obj.getUTCDate(), 2) + "-" + lpad(obj.getUTCMonth() + 1, 2) + "-" + lpad(obj.getUTCFullYear(), 4);
+        }
+
+        function lpad(str, size) {
+            str = "" + str;
+            return new Array(size - str.length + 1).join('0') + str;
+        }
+    });
+</script>
+

@@ -1,0 +1,24 @@
+﻿@model IEnumerable<LoDeOnline.Models.GetSoDanhViewModel>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Loại đề</th>
+            <th>Số đánh</th>
+            <th>Tiền một con</th>
+            <th>Thanh toán 1K</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.LoaiDeName</td>
+                <td>@item.SoDanh</td>
+                <td class="text-right">@item.Quantity</td>
+                <td class="text-right">@item.PriceUnit</td>
+                <td class="text-right">@item.PriceSubtotal</td>
+            </tr>
+        }
+    </tbody>
+</table>

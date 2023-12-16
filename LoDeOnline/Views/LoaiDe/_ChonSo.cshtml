@@ -1,0 +1,31 @@
+﻿@{
+    var loop = 10;
+    var length = (int)Model.length;
+    var padding = (int)Model.padding;
+    var start = (int)Model.start;
+    if (length == 10)
+    {
+        loop = 1;
+    }
+}
+
+<table style="width: 100%;">
+    @for (var i = 0; i < loop; i++)
+    {
+        <tr>
+            @for (var j = 0; j < 10; j++)
+                {
+                    var val = start.ToString("D" + padding);
+                    start += 1;
+                <td class="text-center">
+                    <span class="so">
+                        <span class="so-item">@val</span>
+                    </span>
+                </td>
+            }
+        </tr>
+    }
+</table>
+
+
+

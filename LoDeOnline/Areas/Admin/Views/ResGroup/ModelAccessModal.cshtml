@@ -1,0 +1,20 @@
+﻿
+
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">
+            <span ng-show="vm.item == null">Thêm truy cập</span>
+            <span ng-hide="vm.item == null">Sửa truy cập</span>
+        </h3>
+    </div>
+    <div class="modal-body">
+        @Html.Partial("_ModelAccessForm")
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="vm.save()">Lưu</button>
+        <button class="btn btn-primary" type="button" ng-click="vm.saveAndCreate()" ng-show="vm.item == null">Lưu và thêm mới</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Đóng</button>
+    </div>
+</div>
+
+

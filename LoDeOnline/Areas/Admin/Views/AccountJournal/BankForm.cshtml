@@ -1,0 +1,81 @@
+﻿<div class="o_control_panel o_breadcrumb_full">
+    <ol class="breadcrumb">
+        <li><a ui-sref="app.accountjournalbank.list">Tài khoản ngân hàng</a></li>
+        <li class="active" ng-show="vm.id">{{vm.model.Name}}</li>
+        <li class="active" ng-hide="vm.id">Thêm</li>
+    </ol>
+    <div class="o_cp_left">
+        <div class="o_form_buttons">
+            <button accesskey="s" class="btn btn-primary btn-sm o_form_button_save" type="button" ng-click="vm.on_button_save()">
+                Lưu
+            </button>
+            <button accesskey="c" class="btn btn-primary btn-sm o_form_button_save" type="button" ng-click="vm.on_button_save_and_new()">
+                Lưu và thêm mới
+            </button>
+        </div>
+    </div>
+    <div class="o_cp_right">
+    </div>
+</div>
+
+<div class="o_form_view o_form_editable" kendo-validator="vm.validator">
+    <div class="o_form_sheet_bg">
+        <div class="o_form_sheet">
+            <div class="oe_title">
+                <label class="o_form_label">
+                    Tên tài khoản
+                </label>
+                <h1>
+                    <input class="form-control o_form_required" type="text" ng-model="vm.model.Name">
+                </h1>
+            </div>
+            <div class="o_group">
+                <table class="o_group o_inner_group o_group_col_6">
+                    <tbody>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Số tài khoản
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <input class="form-control o_form_field" type="text" ng-model="vm.model.BankAccNumber">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="1" class="o_td_label">
+                                <label class="o_form_label">
+                                    Ngân hàng
+                                </label>
+                            </td>
+                            <td colspan="1" style="width: 100%;">
+                                <div class="o_field_widget o_field_many2one">
+                                    <select kendo-combo-box
+                                            k-ng-model="vm.model.Bank"
+                                            k-data-text-field="'Name'"
+                                            k-data-value-field="'Id'"
+                                            k-no-data-template="vm.resBankNoDataTemplate"
+                                            k-filter="'contains'"
+                                            k-auto-bind="false"
+                                            k-data-source="vm.resBankDataSource"
+                                            style="width: 100%"></select>
+                                    <script id="noDataTemplate" type="text/x-kendo-tmpl">
+                                        <div>
+                                            Không tìm thấy dữ liệu.
+                                        </div>
+                                        <br />
+                                        <button class="k-button" ng-click="vm.addResBank()">Thêm mới</button>
+                                    </script>
+                                    <button ng-click="vm.updateResBank()" type="button" ng-if="vm.model.Bank" class="fa fa-external-link btn btn-default o_external_button"></button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="o_group o_inner_group o_group_col_6">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
